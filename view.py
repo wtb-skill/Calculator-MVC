@@ -37,7 +37,12 @@ class View(tk.Tk):
         self.main_frm.pack(padx=self.PAD, pady=self.PAD)
 
     def _make_entry(self):
-        ent = ttk.Entry(self.main_frm, justify='right', textvariable=self.value_var)
+        ent = ttk.Entry(
+            self.main_frm,
+            justify='right',
+            textvariable=self.value_var,
+            state='readonly'
+        )
         ent.pack(fill='x')
 
     def _make_buttons(self):
@@ -56,7 +61,11 @@ class View(tk.Tk):
 
                 buttons_in_row = 0
 
-            btn = ttk.Button(frm, text=caption)
+            btn = ttk.Button(
+                frm,
+                text=caption,
+                command=lambda button=caption: self.controller.on_button_click(button)  # częściowo rozumiem
+            )
             btn.pack(side='left')
 
             buttons_in_row += 1
